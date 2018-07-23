@@ -1,4 +1,5 @@
 # Build from a recent python3 version (64 bit python required for Tensorflow)
+FROM ubuntu:16.04
 FROM python:3.6.5-onbuild
 COPY requirements.txt requirements.txt
 
