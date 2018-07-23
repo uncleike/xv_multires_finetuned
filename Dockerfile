@@ -1,14 +1,14 @@
-FROM ubuntu:16.04
+# Build from a recent python3 version (64 bit python required for Tensorflow)
 FROM python:3.6.5-onbuild
+COPY requirements.txt requirements.txt
 
-COPY requirements.txt /tmp/
-RUN pip install --requirement /tmp/requirements.txt
-COPY . /tmp/
+# Install required python modules
+RUN pip3 install -r requirements.txt
 
-ADD ./multiresfinetuned5296.pb /multiresfinetuned5296.pb
-ADD ./create_detections_1.py /create_detections_1.py
-ADD ./create_detections.py /create_detections.py
-ADD ./det_util.py /det_util.py
-ADD ./class_id_map.json /class_id_map.json
-ADD ./run.sh /run.sh
-ADD ./2568.tif /2568.tif
+# An RGB input image for local debug/testing
+# Move it to the root dir where inference code (and tutorial) expects to find it
+RUN mv 2568.tif /2568.tif
+
+# Rename the trained checkpoint from the baseline model release to `model.pb`
+# so that the `run.sh` file will find and use it
+RUN mv multiresfinetuned5296.pb model.pb
