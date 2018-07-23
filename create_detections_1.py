@@ -153,7 +153,7 @@ if __name__ == "__main__":
     cwn,chn = (chip_size)
     wn,hn = (int(width / cwn), int(height / chn))
 
-    num_preds = 250
+    num_preds = 400
     bfull = boxes[:wn*hn].reshape((wn, hn, num_preds, 4))
     b2 = np.zeros(bfull.shape)
     b2[:, :, :, 0] = bfull[:, :, :, 1]
