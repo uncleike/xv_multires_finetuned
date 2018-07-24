@@ -1,10 +1,9 @@
 #!/bin/bash
-
 set -euxo pipefail
 
-VALIDATE_FILE=$1
+INPUT_RGB_IMAGE=$1
 OUTPUT_DIR=$2
 
-OUTPUT_FILE=${OUTPUT_DIR}/$(basename $VALIDATE_FILE).txt
+OUTPUT_FILE=${OUTPUT_DIR}/$(basename $INPUT_RGB_IMAGE).txt
 
-python create_detections_1.py -c ./model.pb --input $VALIDATE_FILE --output $OUTPUT_FILE
+python create_detections.py -c ./model.pb --input $INPUT_RGB_IMAGE --output $OUTPUT_FILE
