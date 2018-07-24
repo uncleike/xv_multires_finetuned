@@ -13,3 +13,6 @@ RUN mv 2568.tif /2568.tif
 # Rename the trained checkpoint from the baseline model release to `model.pb`
 # so that the `run.sh` file will find and use it
 RUN mv multiresfinetuned5296.pb model.pb
+
+#give permission to run shell script
+RUN chmod 177 run.sh 
